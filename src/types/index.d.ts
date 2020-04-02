@@ -7,8 +7,6 @@ export interface BaseOptions {
   file?: PathLike;
   /** The interval to make a request to the status page (ms) */
   interval?: number;
-
-  //[key: string]: any;
 }
 
 export interface StatuspageJSON {
