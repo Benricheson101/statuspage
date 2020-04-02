@@ -87,16 +87,3 @@ export default class extends EventEmitter {
     return promises.writeFile(this.options.file ?? this.defaults.path, JSON.stringify(this.remote, null, 2));
   }
 }
-
-// compare
-  // compare the updated_at or created_at times
-  // emit event if not the same
-// fetch
-  // fetch remote data
-// read
-  // read from the local file
-  // save to this.local
-// run
-  // run all of these functions
-// write
-  // write to the local file
