@@ -20,6 +20,7 @@ export interface StatuspageJSON {
     description: string;
   }
   components: component[];
+  incidents: incident[];
 
   [key: string]: any;
 }
@@ -38,3 +39,52 @@ export interface component {
 
   [key: string]: any;
 }
+
+export interface incident {
+  name: string;
+  status: string;
+  created_at: string;
+  updated_at: string;
+  monitoring_at: string;
+  resolving_at?: string;
+  resolved_at?: string;
+  impact?: string;
+  shortlink: string;
+  scheduled_for?: string;
+  scheduled_until?: string;
+  scheduled_remind_prior?: boolean;
+  scheduled_reminded_at?: string;
+  scheduled_auto_in_progress?: boolean;
+  scheduled_auto_completed?: boolean;
+  metadata?: any;
+  started_at: string;
+  id: string;
+  page_id: string;
+  incident_updates: incident_update[];
+  postmortem_body?: string;
+  postmortem_body_last_updated_at?: string;
+  postmortem_ignored?: boolean;
+  postmortem_published_at?: string;
+  postmortem_notified_subscribers?: boolean;
+  postmortem_notified_twitter?: boolean;
+  components: any[];
+
+  [key: string]: any;
+}
+
+export interface incident_update {
+  status: "investigating" | string;
+  body?: string;
+  created_at: string;
+  wants_twitter_update: boolean;
+  twitter_updated_at?: string;
+  updated_at: string;
+  display_at: string;
+  affected_components?: any;
+  deliver_notifications: boolean;
+  tweet_id?: string;
+  id: string;
+  incident_update: string;
+  custom_tweet: any;
+}
+

@@ -29,7 +29,7 @@ export default class extends EventEmitter {
       return;
     }
     if (!Object.keys(this.local).includes("components")) this.write();
-    return this.local.components[0].updated_at !== this.remote.components[0].updated_at;
+    return this.local.incidents[0].incident_updates[0].updated_at !== this.remote.incidents[0].incident_updates[0].updated_at;
   }
 
   /**
@@ -63,9 +63,7 @@ export default class extends EventEmitter {
       await this.fetch();
       await this.read();
 
-      const hasChanged: boolean = this.compare();
-      
-      if (hasChanged) {
+      if (this.compare()) {
         this.write();
         this.emit("update", this.local);
       }
