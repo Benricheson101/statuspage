@@ -1,7 +1,7 @@
 import Statuspage from "./Statuspage";
 
 const Status = new Statuspage({
-  url: "https://status.discordapp.com/index.json",
+  url: "https://status.discord.com/index.json",
   file: "./build/data.json",
   interval: 150000
 });
