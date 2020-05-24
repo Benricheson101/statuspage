@@ -4,32 +4,27 @@ module.exports = {
     node: true
   },
   extends: [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended"
+    'standard-with-typescript',
   ],
   globals: {
-    Atomics: "readonly",
-    SharedArrayBuffer: "readonly"
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly'
   },
-  parser: "@typescript-eslint/parser",
   parserOptions: {
-    ecmaVersion: 2019,
-    sourceType: "module"
+    project: './tsconfig.json'
   },
-  plugins: ["@typescript-eslint"],
+  plugins: [
+    '@typescript-eslint'
+  ],
   rules: {
-    "@typescript-eslint/indent": ["error", 2],
-    "linebreak-style": ["error", "unix"],
-    quotes: ["error", "double"],
-    semi: ["error", "always"],
-    eqeqeq: "error"
-  },
-  overrides: [
-    {
-      files: ["*.ts", "*.tsx"],
-      rules: {
-        "@typescript-eslint/no-unused-vars": [2, { args: "none" }]
-      }
-    }
-  ]
-};
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/indent': [ 'error', 2 ],
+    '@typescript-eslint/strict-boolean-expressions': 0,
+    '@typescript-eslint/no-floating-promises': 0,
+    '@typescript-eslint/no-misused-promises': 0,
+    'no-misused-promises': 0,
+    'no-async-promise-executor': 0,
+    'no-unused-vars': ['error', { 'args': 'none' }]
+  }
+}

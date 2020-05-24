@@ -1,87 +1,87 @@
-import { StatuspageJSON, BaseOptions } from "./types";
-import { EventEmitter } from "events";
-import fetch from "node-fetch";
-import { promises } from "fs";
+import { StatuspageJSON, BaseOptions } from './types'
+import { EventEmitter } from 'events'
+import fetch from 'node-fetch'
+import { promises } from 'fs'
 
 export default class extends EventEmitter {
-  private defaults: {
-    path: "./build/data.json",
-    interval: 150000,
+  private readonly defaults: {
+    path: './build/data.json'
+    interval: 150000
   }
 
   remote?: StatuspageJSON;
   local?: StatuspageJSON;
 
-  constructor (private options: BaseOptions) {
-    super();
-  } 
+  constructor (private readonly options: BaseOptions) {
+    super()
+  }
 
   /**
    * Compare local and remote data
    */
-  compare () {
+  compare (): boolean {
     if (!this.remote) {
-      console.error(new Error("There is no remote data stored in memory. Use fetch before using compare"));
-      return;
+      console.error(new Error('There is no remote data stored in memory. Use fetch before using compare'))
+      return
     }
     if (!this.local) {
-      console.error(new Error("There is no local data stored in memory. Use read before using compare"));
-      return;
+      console.error(new Error('There is no local data stored in memory. Use read before using compare'))
+      return
     }
-    if (!Object.keys(this.local).includes("components")) this.write();
-    return this.local.incidents[0].incident_updates[0].updated_at !== this.remote.incidents[0].incident_updates[0].updated_at;
+    if (!Object.keys(this.local).includes('components')) this.write()
+    return this.local.incidents[0].incident_updates[0].updated_at !== this.remote.incidents[0].incident_updates[0].updated_at
   }
 
   /**
    * Fetch data from the status page
    */
-  async fetch () {
+  async fetch (): Promise<StatuspageJSON> {
     const remote: StatuspageJSON = await fetch(this.options.url)
-      .then((res) => res.json())
-      .catch(console.error);
-    this.remote = remote;
-    return remote;
+      .then(async (res) => await res.json())
+      .catch(console.error)
+    this.remote = remote
+    return remote
   }
 
   /**
    * Read locally saved data
    */
-  async read () {
-    const localData = await promises.readFile(this.options.file ?? this.defaults.path, "utf-8");
-    this.local = JSON.parse(localData) as any;
-    return localData;
+  async read (): Promise<string> {
+    const localData = await promises.readFile(this.options.file ?? this.defaults.path, 'utf-8')
+    this.local = JSON.parse(localData)
+    return localData
   }
 
   /**
    * Run at a specified interval
    */
-  async run () {
-    this.emit("start", { startedAt: new Date() });
+  run (): void {
+    this.emit('start', { startedAt: new Date() })
 
-    const run = async () => {
-      this.emit("run", { time: new Date() });
-      await this.fetch();
-      await this.read();
+    const run = async (): Promise<void> => {
+      this.emit('run', { time: new Date() })
+      await this.fetch()
+      await this.read()
 
       if (this.compare()) {
-        this.write();
-        this.emit("update", this.local);
+        this.write()
+        this.emit('update', this.local)
       }
-    };
- 
-    run();
-    setInterval(run, this.options.interval ?? this.defaults.interval);
+    }
+
+    run()
+    setInterval(run, this.options.interval ?? this.defaults.interval)
   }
 
   /**
    * Write remote data to the local file
    */
-  async write () {
+  async write (): Promise<void> {
     if (!this.remote) {
-      console.error(new Error("There is no remote data saved in memory. Use fetch before using write"));
-      return;
+      console.error(new Error('There is no remote data saved in memory. Use fetch before using write'))
+      return
     }
-    this.local = this.remote;
-    return promises.writeFile(this.options.file ?? this.defaults.path, JSON.stringify(this.remote, null, 2));
+    this.local = this.remote
+    await promises.writeFile(this.options.file ?? this.defaults.path, JSON.stringify(this.remote, null, 2))
   }
 }
