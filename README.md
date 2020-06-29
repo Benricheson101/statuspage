@@ -10,7 +10,7 @@ $ npm i statuspage_io
 
 ### Usage
 ```js
-const { Statuspage } = require('statuspage_io')
+const { Statuspage } = require('statuspage_updates')
 
 const status = new Statuspage({
   url: 'https://status.discord.com/index.json' // note: must end in `/index.json`
