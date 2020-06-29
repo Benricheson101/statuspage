@@ -16,7 +16,7 @@ const status = new Statuspage({
   url: 'https://status.discord.com/index.json' // note: must end in `/index.json`
 })
 
-status.on('start', ({ startedAt }) => {
+status.on('start', (startedAt) => {
   console.log('Started checking for updates at:', startedAt)
 })
 
@@ -24,7 +24,7 @@ status.on('update', (data) => {
   console.log('New Statuspage update:', data.incidents[0].incident_updates[0].body)
 })
 
-status.on('run', ({ time }) => {
+status.on('run', (time) => {
   console.log('Checked for new updates at:', time)
 })
 
