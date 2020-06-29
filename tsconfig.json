@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es2019",
+    "target": "ES6",
     "outDir": "./build",
     "sourceMap": false,
     "baseUrl": ".",

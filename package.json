@@ -1,10 +1,15 @@
 {
-  "name": "statuspage",
+  "name": "statuspage_io",
+  "description": "Check a https://statuspage.io/ statuspage for updates",
+  "types": "build/index.d.ts",
   "version": "2.0.0",
-  "main": "index.js",
+  "main": "build/index.js",
   "license": "MIT",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "lint": "eslint src/**/*.ts",
+    "prepare": "tsc -p tsconfig.json && cp src/types/index.d.ts build/index.d.ts",
+    "test": "node test/index.js"
   },
   "devDependencies": {
     "@types/node": "^13.9.8",
@@ -22,5 +27,8 @@
   },
   "dependencies": {
     "node-fetch": "^2.6.0"
-  }
+  },
+  "files": [
+    "build/**/*"
+  ]
 }
