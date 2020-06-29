@@ -3,9 +3,9 @@ Check a https://statuspage.io statuspage for updates
 
 ### Installation
 ```bash
-$ yarn add statuspage_io
+$ yarn add statuspage_updates
 # or
-$ npm i statuspage_io
+$ npm i statuspage_updates
 ```
 
 ### Usage
