@@ -3,7 +3,7 @@
   "author": "Ben Richeson",
   "description": "Check a https://statuspage.io/ statuspage for updates",
   "types": "build/index.d.ts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "build/index.js",
   "license": "MIT",
   "scripts": {
