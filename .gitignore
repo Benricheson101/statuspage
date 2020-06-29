@@ -116,3 +116,4 @@ dist
 
 # TypeScript build folder
 build
+statuspage_data.json
