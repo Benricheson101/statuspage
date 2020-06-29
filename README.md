@@ -3,14 +3,14 @@ Check a https://statuspage.io statuspage for updates
 
 ### Installation
 ```bash
-$ yarn add statuspage_updates
+$ yarn add statuspage-updates
 # or
-$ npm i statuspage_updates
+$ npm i statuspage-updates
 ```
 
 ### Usage
 ```js
-const { Statuspage } = require('statuspage_updates')
+const { Statuspage } = require('statuspage-updates')
 
 const status = new Statuspage({
   url: 'https://status.discord.com/index.json' // note: must end in `/index.json`
