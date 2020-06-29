@@ -5,11 +5,15 @@
   "types": "build/index.d.ts",
   "version": "1.0.2",
   "main": "build/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/benricheson101/statuspage"
+  },
   "license": "MIT",
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "lint": "eslint src/**/*.ts",
-    "prepare": "tsc -p tsconfig.json && cp src/types/index.d.ts build/index.d.ts",
+    "prepare": "tsc -p tsconfig.json",
     "test": "node test/index.js"
   },
   "devDependencies": {

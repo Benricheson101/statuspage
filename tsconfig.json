@@ -4,6 +4,7 @@
     "target": "ES6",
     "outDir": "./build",
     "sourceMap": false,
+    "declaration": true,
     "baseUrl": ".",
     "paths": {
       "~/*": ["src/*"],
