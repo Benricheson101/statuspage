@@ -4,8 +4,8 @@ import fetch from 'node-fetch'
 import { promises } from 'fs'
 
 export class Statuspage extends EventEmitter {
-  private readonly defaults= {
-    path: './build/data.json',
+  private readonly defaults = {
+    path: 'statuspage_data.json',
     interval: 150000
   }
 
