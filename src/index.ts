@@ -59,10 +59,10 @@ export class Statuspage extends EventEmitter {
    * Run at a specified interval
    */
   run (): void {
-    this.emit('start', new Date())
+    this.emit('start', { startedAt: new Date() })
 
     const run = async (): Promise<void> => {
-      this.emit('run', new Date())
+      this.emit('run', { time: new Date() })
       await this.fetch()
       await this.read()
 
