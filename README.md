@@ -1,3 +1,8 @@
+## This project is now archived
+A newer/better version of this can be found here: https://github.com/Benricheson101/statuspage.js
+
+**This repo will not recieve anymore updates**
+
 ## Statuspage
 Check a https://statuspage.io statuspage for updates
 
